@@ -1,9 +1,9 @@
-import { MigrationBuilder, ColumnDefinition } from "node-pg-migrate";
+import { MigrationBuilder} from "node-pg-migrate";
 
-export const shorthands: ColumnDefinition | undefined = undefined;
+export const shorthands:  undefined = undefined;
 
 export async function up(pgm: MigrationBuilder): Promise<void> {
-    pgm.createTable('Teams', {
+    pgm.createTable('teams', {
         id: {
             type: 'uuid',
             primaryKey: true,
@@ -40,7 +40,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 
     pgm.createType('team_role', ['owner', 'admin', 'member']);
 
-    pgm.createTable('team_member', {
+    pgm.createTable('team_members', {
         id: {
             type: 'uuid',
             primaryKey: true,
@@ -73,7 +73,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
     pgm.addConstraint('team_members', 'team_members_unique_membership', 'UNIQUE(team_id, user_id)');
 
 
-    pgm.createIndex('team_member', 'team_id');
+    pgm.createIndex('team_members', 'team_id');
     pgm.createIndex('team_members', 'user_id');
 }
 
