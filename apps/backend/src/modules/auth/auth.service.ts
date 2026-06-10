@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { db } from "@/db/client";
 import { AppError } from "@/errors/AppError";
-import { redis, refreshTokens } from "@/utils/redis";
+import { refreshTokens } from "@/utils/redis";
 import { signAccessToken, signRefreshToken, verifyRefreshToken, parseExpiresIn } from "@/utils/jwt";
 import { env } from "@/config/env";
 import type { RegisterInput, LoginInput, AuthUser, AuthResponse } from "./auth.types";

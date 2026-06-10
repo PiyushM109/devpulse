@@ -3,12 +3,14 @@ import { env } from './config/env';
 import { logger } from './utils/logger';
 import { checkDbConnection } from './db/client';
 import { createApp } from './app';
+import { checkRedisConnection } from './utils/redis';
 
 async function bootstrap(): Promise<void> {
   logger.info('DevPulse backend starting...');
 
   await checkDbConnection();
-
+  await checkRedisConnection();
+  
   const app = createApp();
 
   const server = app.listen(env.PORT, () => {

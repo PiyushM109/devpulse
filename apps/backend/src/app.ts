@@ -7,6 +7,7 @@ import { requestId } from './middleware/requestId';
 import { requestLogger } from './middleware/requestLogger';
 import { errorHandler } from './middleware/errorHandler';
 import { healthRouter } from './routes/health';
+import { authRouters } from './modules/auth/auth.routes';
 
 export function createApp(): Application {
     const app = express();
@@ -28,6 +29,7 @@ export function createApp(): Application {
     app.use(requestLogger);
 
     app.use('/health', healthRouter);
+    app.use('/auth', authRouters);
 
     app.use((_req, res) => {
         res.status(404).json({
